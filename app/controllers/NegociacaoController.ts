@@ -1,17 +1,37 @@
-export class NegociacaoController {
-  private _inputData;
-  private _inputQuantidade;
-  private _inputValor;
+import { Negociacao } from "../models/Negociacao.js";
 
+export class NegociacaoController {
+  private _inputData: HTMLInputElement;
+  private _inputQuantidade: HTMLInputElement;
+  private _inputValor: HTMLInputElement;
+
+  // Construtor não tipa.
   constructor() {
     this._inputData = document.querySelector('#data');
     this._inputQuantidade = document.querySelector('#quantidade');
     this._inputValor = document.querySelector('#valor');
   }
 
-  adiciona() {
-    console.log(this._inputData);
-    console.log(this._inputQuantidade);
-    console.log(this._inputValor);
+  adiciona(): void {
+    const negociacao = this._criaNegociacao();
+    // Faz algo com a negociação.
+    console.log(negociacao);
+    this._limpaFormulario();
+  }
+
+  private _criaNegociacao(): Negociacao {
+    const date = new Date(this._inputData.value.replace(/-/g, ',')),
+          quantidade = parseInt(this._inputQuantidade.value),
+          valor = parseFloat(this._inputValor.value);
+    
+    return new Negociacao(date, quantidade, valor);
+  }
+
+  private _limpaFormulario(): void {
+    this._inputData.value = '';
+    this._inputQuantidade.value = '';
+    this._inputValor.value = '';
+    // Muda o foco para o input de data do formulário.
+    this._inputData.focus();
   }
 }
