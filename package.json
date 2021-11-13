@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "concurrently \"npm run tswatch\" \"npm run server\"",
     "server": "lite-server --baseDir=dist",
-    "start": "concurrently \"npm run watch\" \"npm run server\"",
     "tscompile": "tsc",
-    "tswatch": "tsc -w"
+    "tswatch": "tsc -w",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
@@ -16,6 +16,5 @@
     "concurrently": "^6.0.0",
     "lite-server": "^2.6.1",
     "typescript": "^4.4.4"
-  },
-  "dependencies": {}
+  }
 }
